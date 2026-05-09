@@ -1,26 +1,26 @@
 # 🛍️ Online Retail Data Analysis & Power BI Dashboard
 
 ## 📊 Project Overview
-This project focuses on analyzing an online retail dataset using Excel, Power Query, and Power BI.  
+This project focuses on analyzing an online retail dataset using Microsoft Excel.  
 The objective is to clean, transform, and analyze transactional data to generate meaningful business insights and build an interactive dashboard.
-
 ---
 
 ## 🧹 Data Cleaning (Excel)
-Initial data preparation was performed in Excel:
+Data preparation was performed in Excel:
 - Removed duplicate records  
 - Handled missing and inconsistent values  
 - Corrected data types (dates, numeric fields)  
-- Structured raw data for further processing  
+- Structured raw data for analysis  
+
 
 ---
 
-## 🔄 Data Transformation (Power Query)
-Power Query was used to:
-- Clean and filter raw transactional data  
-- Transform and reshape datasets  
-- Create calculated columns  
-- Prepare data for analytical use in Power BI  
+## 🔄 Data Transformation
+Data transformation and preparation were completed using Excel features:
+- Organized and reshaped raw data  
+- Created calculated columns  
+- Prepared dataset for analysis and visualization  
+
 
 ---
 
@@ -37,19 +37,21 @@ The following analyses were performed on the dataset:
 
 ---
 
-## 📊 Dashboard (Power BI)
-An interactive dashboard was developed in Power BI featuring:
-- Dynamic visualizations and charts  
+## 📊 Dashboard (Excel)
+An interactive dashboard was developed in Excel featuring:
+- Dynamic charts and visualizations  
 - Key business metrics and KPIs  
-- Filters and slicers for interactive analysis  
-- Clear layout for data exploration and decision support  
+- Filters (slicers) for interactive analysis  
+- Structured layout for data exploration  
 
 ---
 
 ## 🛠 Tools Used
 - Microsoft Excel  
-- Power Query  
-- Power BI  
+  - Pivot Tables  
+  - Charts & Graphs  
+  - Data Cleaning Techniques  
+  - Slicers & Dashboard Design 
 
 ---
 

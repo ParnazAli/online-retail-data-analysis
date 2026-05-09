@@ -55,6 +55,7 @@ An interactive dashboard was developed in Power BI featuring:
 
 ## 📷 Dashboard Preview
 
+![Dashboard Preview](https://raw.githubusercontent.com/ParnazAli/online-retail-data-analysis/refs/heads/main/Final_Dashboard.jpg)
 
 ---
 

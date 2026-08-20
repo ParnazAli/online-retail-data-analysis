@@ -1,0 +1,4 @@
+pandas>=2.0
+pyxlsb>=1.0.10
+matplotlib>=3.7
+seaborn>=0.13

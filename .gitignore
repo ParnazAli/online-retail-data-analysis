@@ -1,0 +1,17 @@
+# Large data files — regenerate locally via scripts/, don't bloat the repo
+data/raw/*.xlsb
+data/raw/*.csv
+data/processed/*.csv
+retail.db
+
+# Keep folder structure in git
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OS
+.DS_Store

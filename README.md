@@ -34,7 +34,6 @@ is actually done in a data warehouse / BI setting.
 │   ├── 02_export_for_powerbi.py    # exports final tables to CSV
 │   └── 03_generate_charts.py       # quick-look PNG charts from the SQL views
 ├── reports/figures/          # chart previews (see below)
-├── powerbi/                  # Power BI dashboard + build notes
 └── retail.db                 # SQLite database (all tables/views)
 ```
 
@@ -96,13 +95,6 @@ entirely.
 ![Top 10 Products](reports/figures/top_10_products.png)
 ![Peak Hours](reports/figures/peak_hours.png)
 ![Customer Distribution](reports/figures/customer_distribution.png)
-
-## Power BI dashboard
-
-The full interactive dashboard (filters/slicers, drill-downs) is built in
-Power BI on top of `data/processed/fact_transactions.csv` and
-`data/processed/dim_customer_rfm.csv`. See `powerbi/README.md` for the
-build notes and relationship setup.
 
 ## Tools used
 

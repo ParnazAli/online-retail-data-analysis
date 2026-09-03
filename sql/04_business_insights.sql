@@ -19,7 +19,8 @@ FROM transactions_enriched
 GROUP BY invoice_year_month
 ORDER BY invoice_year_month;
 
--- 2. Top 10 products by quantity sold
+-- 2. Top 10 products by quantity sold (excludes non-product admin codes
+--    such as POST, DOT, M — see sql/01_data_cleaning.sql, Step 5)
 DROP VIEW IF EXISTS v_top_10_products;
 CREATE VIEW v_top_10_products AS
 SELECT
@@ -28,6 +29,7 @@ SELECT
     ROUND(SUM(total_price), 2) AS total_revenue
 FROM transactions_enriched
 WHERE description IS NOT NULL
+  AND is_adjustment_code = 0
 GROUP BY description
 ORDER BY total_quantity DESC
 LIMIT 10;

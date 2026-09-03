@@ -31,8 +31,15 @@ Output of `sql/02_feature_engineering.sql`, built on cleaned data.
 | invoice_hour | Hour of day (0–23) |
 | time_of_day_bucket | One of: 6 AM–9 AM, 10 AM–1 PM, 2 PM–5 PM, 6 PM–9 PM |
 | customer_id | Customer identifier (null for guest orders) |
-| country | Customer's country |
+| country | Customer's country (standardized: EIRE→Ireland, RSA→South Africa, USA→United States) |
 | has_customer_id / has_description | Data-quality flags |
+| is_adjustment_code | 1 if stock_code is administrative (POST, DOT, M, C2, D, S, BANK CHARGES, AMAZONFEE, CRUK, B), not a real product |
+| is_outlier_quantity / is_outlier_price | 1 if flagged by the IQR method — kept, not removed, since a large wholesale order is valid data |
+
+## `data_quality_log` (audit trail)
+
+Every cleaning rule applied in `sql/01_data_cleaning.sql`, logged with the
+rule, rows affected, and the action taken. Nothing is silently dropped.
 
 ## `dim_customer_rfm.csv` (Power BI dimension table)
 

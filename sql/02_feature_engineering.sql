@@ -38,7 +38,10 @@ SELECT
     customer_id,
     country,
     has_customer_id,
-    has_description
+    has_description,
+    is_adjustment_code,
+    is_outlier_quantity,
+    is_outlier_price
 FROM clean_transactions;
 
 -- Sanity check

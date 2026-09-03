@@ -28,7 +28,8 @@ is actually done in a data warehouse / BI setting.
 │   ├── 01_data_cleaning.sql        # nulls, cancellations, invalid rows, duplicates
 │   ├── 02_feature_engineering.sql  # revenue, calendar parts, time buckets
 │   ├── 03_rfm_analysis.sql         # Recency/Frequency/Monetary + segmentation
-│   └── 04_business_insights.sql    # all reporting views
+│   ├── 04_business_insights.sql    # all reporting views
+│   └── 05_advanced_analysis.sql    # cohort retention, CLV, market basket, MoM growth
 ├── scripts/
 │   ├── 01_load_raw_data.py         # loads raw file into SQLite (no cleaning)
 │   ├── 02_export_for_powerbi.py    # exports final tables to CSV
@@ -50,6 +51,7 @@ sqlite3 retail.db < sql/01_data_cleaning.sql
 sqlite3 retail.db < sql/02_feature_engineering.sql
 sqlite3 retail.db < sql/03_rfm_analysis.sql
 sqlite3 retail.db < sql/04_business_insights.sql
+sqlite3 retail.db < sql/05_advanced_analysis.sql
 
 # 3. Export the results for Power BI + generate preview charts
 python scripts/02_export_for_powerbi.py
@@ -58,16 +60,20 @@ python scripts/03_generate_charts.py
 
 ## Data cleaning summary
 
-| Step | Rows removed | Reason |
+| Step | Rows affected | Action |
 |---|---|---|
-| Cancelled orders (`Invoice` starts with `C`) | 9,288 | Returns/cancellations, not sales |
-| Non-positive quantity or price | ~7,743 additional | Fees, adjustments, data errors |
+| Cancelled orders (`Invoice` starts with `C`) | 9,288 | Moved to `cancelled_transactions` |
+| Non-positive quantity or price | 3,853 | Removed |
+| Exact duplicate rows | 4,842 | Removed |
+| Country name standardization (EIRE, RSA, USA, Unspecified) | 8,991 | Standardized |
+| Administrative/non-product stock codes (POST, DOT, M, C2, D, S, BANK CHARGES, AMAZONFEE, CRUK, B) | 2,308 | Flagged (`is_adjustment_code`), kept |
+| Statistical outliers (IQR method, quantity/price) | 27,111 / 37,828 | Flagged (`is_outlier_quantity` / `is_outlier_price`), kept — a large wholesale order is real data, not an error |
+| Missing Customer ID | 132,186 | Flagged, kept for country/product analysis, excluded from RFM |
 | **Result** | **524,879 clean transaction rows** | out of 541,910 raw rows |
 
-Rows with a missing `Customer ID` (135,080) are **kept** for country/product
-level analysis but excluded from customer-level analysis (RFM), since a
-customer cannot be identified. Full reasoning is documented inline in
-`sql/01_data_cleaning.sql`.
+Every cleaning step is written to a `data_quality_log` audit table (see
+`sql/01_data_cleaning.sql`) with the exact rule applied, rows affected, and
+what was done — nothing is silently dropped or altered.
 
 ## RFM segmentation
 
@@ -95,6 +101,20 @@ entirely.
 ![Top 10 Products](reports/figures/top_10_products.png)
 ![Peak Hours](reports/figures/peak_hours.png)
 ![Customer Distribution](reports/figures/customer_distribution.png)
+
+## Advanced analysis
+
+Beyond the original dashboard's scope (`sql/05_advanced_analysis.sql`),
+using window functions and self-joins:
+
+- **Month-over-month growth** — sales trend with `LAG()` to compute % change
+- **Cohort retention** — % of each month's new customers still active in
+  following months (self-join on each customer's first purchase month).
+  First-month retention across cohorts sits around 15–37%.
+- **Customer Lifetime Value (CLV)** — total revenue, active tenure, and a
+  12-month forward projection at each customer's current purchase pace
+- **Market basket analysis** — which products are most frequently bought
+  together in the same invoice (self-join on `invoice_no`)
 
 ## Tools used
 

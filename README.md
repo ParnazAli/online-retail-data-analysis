@@ -10,13 +10,13 @@ or business logic lives in Python.
 The cleaned, feature-engineered output is exported to CSV and connected to
 an interactive **Power BI** dashboard.
 
-## Why SQL for this one
+## Why SQL
 
-Most of my other portfolio projects use Python/pandas end-to-end. This one
-is deliberately built as a SQL-first project — cleaning, feature
-engineering, RFM segmentation, and business aggregations are all written
-as auditable `.sql` scripts, which is closer to how this kind of analysis
-is actually done in a data warehouse / BI setting.
+This project is built entirely in SQL — data cleaning, feature engineering,
+RFM segmentation, and business aggregations are all written as auditable
+`.sql` scripts, closer to how this kind of analysis is actually done in a
+data warehouse / BI setting. Python is used only for file I/O (loading the
+raw source file and exporting the final results).
 
 ## Project structure
 

@@ -126,3 +126,22 @@ using window functions and self-joins:
 ## Data source
 
 [Online Retail II Dataset](https://archive.ics.uci.edu/dataset/502/online+retail+ii) — UCI Machine Learning Repository.
+
+
+
+## Power BI Dashboard
+
+![Dashboard Preview](reports/figures/dashboard_preview.png)
+
+An interactive dashboard built on `fact_transactions.csv` and
+`dim_customer_rfm.csv`, related on `customer_id`. Includes:
+
+- **KPI cards**: Total Revenue, Total Number of Customers, Avg. Customer
+  Value, Avg. Purchase Frequency, Avg. Recency (Days)
+- **Monthly Customer Growth Trend** — new customers per month
+- **Total Revenue vs. Total Quantity Over Time** — combo chart, monthly trend
+- **Customer Segmentation Breakdown** — donut chart by RFM segment
+- **Peak Sales Hours Based on Number of Invoices** — orders by time-of-day bucket
+- **Slicers**: Year, Month, Time Bucket, Country, RFM Segment
+
+The `.pbix` file is in `powerbi/Dashboard.pbix`.

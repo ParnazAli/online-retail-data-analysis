@@ -10,23 +10,6 @@ or business logic lives in Python.
 The cleaned, feature-engineered output is exported to CSV and connected to
 an interactive **Power BI** dashboard.
 
-## Power BI Dashboard
-
-![Dashboard Preview](reports/figures/dashboard_preview.png)
-
-An interactive dashboard built on `fact_transactions.csv` and
-`dim_customer_rfm.csv`, related on `customer_id`. Includes:
-
-- **KPI cards**: Total Revenue, Total Number of Customers, Avg. Customer
-  Value, Avg. Purchase Frequency, Avg. Recency (Days)
-- **Monthly Customer Growth Trend** — new customers per month
-- **Total Revenue vs. Total Quantity Over Time** — combo chart, monthly trend
-- **Customer Segmentation Breakdown** — donut chart by RFM segment
-- **Peak Sales Hours Based on Number of Invoices** — orders by time-of-day bucket
-- **Slicers**: Year, Month, Time Bucket, Country, RFM Segment
-
-The `.pbix` file is in `powerbi/Dashboard.pbix`.
-
 ## Why SQL
 
 This project is built entirely in SQL — data cleaning, feature engineering,
@@ -111,6 +94,23 @@ revenue — a clear signal to prioritize retention offers for this group and
 build a win-back campaign for the "At Risk" segment before they churn
 entirely.
 
+## Power BI Dashboard
+
+![Dashboard Preview](reports/figures/dashboard_preview.png)
+
+An interactive dashboard built on `fact_transactions.csv` and
+`dim_customer_rfm.csv`, related on `customer_id`. Includes:
+
+- **KPI cards**: Total Revenue, Total Number of Customers, Avg. Customer
+  Value, Avg. Purchase Frequency, Avg. Recency (Days)
+- **Monthly Customer Growth Trend** — new customers per month
+- **Total Revenue vs. Total Quantity Over Time** — combo chart, monthly trend
+- **Customer Segmentation Breakdown** — donut chart by RFM segment
+- **Peak Sales Hours Based on Number of Invoices** — orders by time-of-day bucket
+- **Slicers**: Year, Month, Time Bucket, Country, RFM Segment
+
+The `.pbix` file is in `powerbi/Dashboard.pbix`.
+
 ## Preview charts
 
 ![Monthly Sales Trend](reports/figures/monthly_sales_trend.png)
@@ -147,4 +147,5 @@ using window functions and self-joins:
 ## Author
 
 **Parnaz Ali**
+
 Email: parnazali1383@gmail.com

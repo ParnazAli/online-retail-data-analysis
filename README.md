@@ -143,3 +143,8 @@ using window functions and self-joins:
 ## Data source
 
 [Online Retail II Dataset](https://archive.ics.uci.edu/dataset/502/online+retail+ii) — UCI Machine Learning Repository.
+
+## Author
+
+**Parnaz Ali**
+Email: parnazali1383@gmail.com
